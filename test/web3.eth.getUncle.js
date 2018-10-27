@@ -1,6 +1,6 @@
 var chai = require('chai');
 var Web3 = require('../index');
-var web3 = new Web3();
+var qkc3 = new Web3();
 var BigNumber = require('bignumber.js');
 var testMethod = require('./helpers/test.method.js');
 

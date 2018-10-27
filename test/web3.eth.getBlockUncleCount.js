@@ -1,5 +1,5 @@
 var chai = require('chai');
-var web3 = require('../index');
+var qkc3 = require('../index');
 var method = 'getBlockUncleCount';
 var testMethod = require('./helpers/test.method.js');
 

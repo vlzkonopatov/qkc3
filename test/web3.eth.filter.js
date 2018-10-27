@@ -1,9 +1,9 @@
 var chai = require('chai');
-var Web3 = require('../index');
-var web3 = new Web3();
+var Qkc3 = require('../index');
+var qkc3 = new Qkc3();
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var errors = require('../lib/web3/errors');
+var errors = require('../lib/qkc3/errors');
 
 var method = 'filter';
 
@@ -51,15 +51,15 @@ var tests = [{
     call: 'eth_newPendingTransactionFilter'
 }];
 
-describe('web3.eth', function () {
+describe('qkc3.eth', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function (done) {
 
                 // given
                var provider = new FakeHttpProvider();
-               web3.reset();
-               web3.setProvider(provider);
+               qkc3.reset();
+               qkc3.setProvider(provider);
                provider.injectError(null);
                provider.injectResult(test.result);
                provider.injectValidation(function (payload) {
@@ -69,7 +69,7 @@ describe('web3.eth', function () {
                });
 
                // call
-               var filter = web3.eth[method].apply(web3.eth, test.args);
+               var filter = qkc3.eth[method].apply(qkc3.eth, test.args);
 
                // test filter.get
                if(typeof test.args === 'object') {
@@ -93,7 +93,7 @@ describe('web3.eth', function () {
                    // async should get the fake logs
                    filter.get(function(e, res){
                        assert.deepEqual(logs, res);
-                       web3.reset();
+                       qkc3.reset();
                        done();
                    });
                }
@@ -102,8 +102,8 @@ describe('web3.eth', function () {
             it('should call filterCreationErrorCallback on error while filter creation', function (done) {
                 // given
                 var provider = new FakeHttpProvider();
-                web3.reset();
-                web3.setProvider(provider);
+                qkc3.reset();
+                qkc3.setProvider(provider);
                 provider.injectError(errors.InvalidConnection());
                 // call
                 var args = test.args.slice();
@@ -112,7 +112,7 @@ describe('web3.eth', function () {
                     assert.deepEqual(errors.InvalidConnection(), err);
                     done();
                 });
-                web3.eth[method].apply(web3.eth, args);
+                qkc3.eth[method].apply(qkc3.eth, args);
             })
         });
     });

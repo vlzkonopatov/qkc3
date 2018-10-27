@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const Web3 = require('../index.js');
-const web3 = new Web3();
+const Qkc3 = require('../index.js');
+const qkc3 = new Qkc3();
 
 
 const URL_PROVIDER = "http://jrpc.testnet.quarkchain.io:38391";
@@ -28,7 +28,7 @@ const TRANSACTION  = {
 
 
 
-web3.setProvider(new web3.providers.HttpProvider(URL_PROVIDER));
+qkc3.setProvider(new qkc3.providers.HttpProvider(URL_PROVIDER));
 
 console.log('init');
 
@@ -38,42 +38,42 @@ console.log("HASH: " + HASH);
 console.log("TRUE: " + TRUE);
 console.log("----------------------------------------------------------------");
 
-var balance = web3.qkc.getBalance(HASH);
+var balance = qkc3.qkc.getBalance(HASH);
 console.log("balance:");
 console.log(balance);
 console.log("----------------------------------------------------------------");
 
 
-var getTransactionCount = web3.qkc.getTransactionCount(HASH);
+var getTransactionCount = qkc3.qkc.getTransactionCount(HASH);
 console.log("getTransactionCount:");
 console.log(getTransactionCount);
 console.log("----------------------------------------------------------------");
 
-var getCode = web3.qkc.getCode(HASH);
+var getCode = qkc3.qkc.getCode(HASH);
 console.log("getCode:");
 console.log(getCode);
 console.log("----------------------------------------------------------------");
 
-var getTransactionReceipt = web3.qkc.getTransactionReceipt(TRANSACTION_ID);
+var getTransactionReceipt = qkc3.qkc.getTransactionReceipt(TRANSACTION_ID);
 console.log("getTransactionReceipt:");
 console.log(getTransactionReceipt);
 console.log("----------------------------------------------------------------");
 
 /*  @TODO NOT WORKING SERVER
-var getAccountData = web3.qkc.getAccountData(HASH, TRUE);
+var getAccountData = qkc3.qkc.getAccountData(HASH, TRUE);
 console.log("getAccountData:");
 console.log(getAccountData);
 console.log("----------------------------------------------------------------");*/
 
 /*  @TODO NOT WORKING SERVER
-var sendTransaction = web3.qkc.sendTransaction(TRANSACTION);
+var sendTransaction = qkc3.qkc.sendTransaction(TRANSACTION);
 console.log("sendTransaction:");
 console.log(sendTransaction);
 console.log("----------------------------------------------------------------"); */
 
 
 /*  @TODO NOT WORKING SERVER
-var call = web3.qkc.call(TRANSACTION);
+var call = qkc3.qkc.call(TRANSACTION);
 console.log("call:");
 console.log(call);
 console.log("----------------------------------------------------------------"); */

@@ -1,17 +1,17 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var Qkc3 = require('../index');
+var qkc3 = new Qkc3();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var bn = require('bignumber.js');
 
-describe('lib/web3/batch', function () {
+describe('lib/qkc3/batch', function () {
     describe('execute', function () {
         it('should execute batch request', function (done) {
-            
+
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
-            web3.reset();
+            qkc3.setProvider(provider);
+            qkc3.reset();
 
             var result = '0x126';
             var result2 = '0x127';
@@ -39,17 +39,17 @@ describe('lib/web3/batch', function () {
                 assert.deepEqual(second.params, ['0x0000000000000000000000000000000000000005', 'latest']);
             });
 
-            var batch = web3.createBatch(); 
-            batch.add(web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.eth.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
+            var batch = qkc3.createBatch();
+            batch.add(qkc3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(qkc3.eth.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
             batch.execute();
         });
-        
+
         it('should execute batch request for async properties', function (done) {
-            
+
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
-            web3.reset();
+            qkc3.setProvider(provider);
+            qkc3.reset();
 
             var result = [];
             var result2 = '0xb';
@@ -77,17 +77,17 @@ describe('lib/web3/batch', function () {
                 assert.deepEqual(second.params, []);
             });
 
-            var batch = web3.createBatch(); 
-            batch.add(web3.eth.getAccounts.request(callback));
-            batch.add(web3.net.getPeerCount.request(callback2));
+            var batch = qkc3.createBatch();
+            batch.add(qkc3.eth.getAccounts.request(callback));
+            batch.add(qkc3.net.getPeerCount.request(callback2));
             batch.execute();
         });
 
         it('should execute batch request with contract', function (done) {
-            
+
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
-            web3.reset();
+            qkc3.setProvider(provider);
+            qkc3.reset();
 
             var abi = [{
                 "name": "balance(address)",
@@ -103,7 +103,7 @@ describe('lib/web3/batch', function () {
                 }]
             }];
 
-            
+
             var address = '0x1000000000000000000000000000000000000001';
             var result = '0x126';
             var result2 = '0x0000000000000000000000000000000000000000000000000000000000000123';
@@ -133,18 +133,18 @@ describe('lib/web3/batch', function () {
                 }]);
             });
 
-            var batch = web3.createBatch(); 
-            batch.add(web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.eth.contract(abi).at(address).balance.request(address, callback2));
+            var batch = qkc3.createBatch();
+            batch.add(qkc3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(qkc3.eth.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2]);
             batch.execute();
         });
 
         it('should execute batch requests and receive errors', function (done) {
-            
+
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
-            web3.reset();
+            qkc3.setProvider(provider);
+            qkc3.reset();
 
             var abi = [{
                 "name": "balance(address)",
@@ -160,7 +160,7 @@ describe('lib/web3/batch', function () {
                 }]
             }];
 
-            
+
             var address = '0x1000000000000000000000000000000000000001';
             var result = 'Something went wrong';
             var result2 = 'Something went wrong 2';
@@ -191,9 +191,9 @@ describe('lib/web3/batch', function () {
                 }]);
             });
 
-            var batch = web3.createBatch(); 
-            batch.add(web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.eth.contract(abi).at(address).balance.request(address, callback2));
+            var batch = qkc3.createBatch();
+            batch.add(qkc3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(qkc3.eth.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2], true); // injects error
             batch.execute();
         });

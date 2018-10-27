@@ -1,8 +1,8 @@
-var Web3 = require('./lib/qkc3');
+var Qkc3 = require('./lib/qkc3');
 
 // dont override global variable
-if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
-    window.Web3 = Web3;
+if (typeof window !== 'undefined' && typeof window.Qkc3 === 'undefined') {
+    window.Qkc3 = Qkc3;
 }
 
-module.exports = Web3;
+module.exports = Qkc3;

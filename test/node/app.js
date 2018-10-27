@@ -1,5 +1,5 @@
-var web3 = require('web3');
+var qkc3 = require('qkc3');
 
-console.log(web3.version.api);
+console.log(qkc3.version.api);
 
 

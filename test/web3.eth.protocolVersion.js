@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var Qkc3 = require('../index');
+var qkc3 = new Web3();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'protocolVersion';
@@ -18,7 +18,7 @@ describe('eth.protocolVersion', function () {
 
                 // given
                 var provider = new FakeHttpProvider();
-                web3.setProvider(provider);
+                qkc3.setProvider(provider);
                 provider.injectResult(test.result);
                 provider.injectValidation(function (payload) {
                     assert.equal(payload.jsonrpc, '2.0');
@@ -27,7 +27,7 @@ describe('eth.protocolVersion', function () {
                 });
 
                 // when
-                var result = web3.eth[method];
+                var result = qkc3.eth[method];
 
                 // then
                 assert.deepEqual(test.result, result);

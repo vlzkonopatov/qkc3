@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Web3 = require('../index');
+var Qkc3 = require('../index');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
@@ -45,7 +45,7 @@ describe('eth', function () {
             it('property test: ' + index, function (done) {
                 // given
                 var provider = new FakeHttpProvider();
-                var web3 = new Web3(provider);
+                var qkc3 = new Qkc3(provider);
                 provider.injectBatchResults(test.result);
                 provider.injectValidation(function(payload) {
                     assert.equal(payload[0].jsonrpc, '2.0', 'failed');
@@ -59,7 +59,7 @@ describe('eth', function () {
 
 
                 // call
-                var syncing = web3.eth[method](function(e, res){
+                var syncing = qkc3.eth[method](function(e, res){
                     if(count === 1) {
                         assert.isTrue(res);
                         count++;

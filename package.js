@@ -1,9 +1,9 @@
 /* jshint ignore:start */
 Package.describe({
-  name: 'quarkchain:web3',
+  name: 'quarkchain:qkc3',
   version: '0.20.7',
   summary: 'quarkchain JavaScript API, middleware to talk to a ethreum node over RPC',
-  git: 'https://github.com/ethereum/web3.js',
+  git: 'https://github.com/ethereum/qkc3.js',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
@@ -19,9 +19,9 @@ Package.onUse(function(api) {
 
   // api.use('3stack:bignumber@2.0.0', 'client');
 
-  api.export(['Web3', 'BigNumber'], ['client', 'server']);
+  api.export(['Qkc3', 'BigNumber'], ['client', 'server']);
 
-  api.addFiles('dist/web3.js', ['client', 'server']);
+  api.addFiles('dist/qkc3.js', ['client', 'server']);
   api.addFiles('package-init.js', ['client', 'server']);
 });
 

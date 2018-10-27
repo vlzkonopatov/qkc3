@@ -1,5 +1,5 @@
-var Web3 = require('../index');
-var web3 = new Web3();
+var Qkc3 = require('../index');
+var qkc3 = new Qkc3();
 var BigNumber = require('bignumber.js');
 var testMethod = require('./helpers/test.method.js');
 

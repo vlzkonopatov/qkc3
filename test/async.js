@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var Qkc3 = require('../index');
+var qkc3 = new Qkc3();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 // use sendTransaction as dummy
@@ -24,10 +24,10 @@ var tests = [{
 describe('async', function () {
     tests.forEach(function (test, index) {
         it('test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
+            qkc3.setProvider(provider);
             provider.injectResult(test.result);
             provider.injectValidation(function (payload) {
                 assert.equal(payload.jsonrpc, '2.0');
@@ -35,23 +35,23 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
-            web3.eth[method](test.input, function(error, result){
+            // when
+            qkc3.eth[method](test.input, function(error, result){
 
                 // then
                 assert.isNull(error);
                 assert.strictEqual(test.formattedResult, result);
-                
+
                 done();
             });
-            
+
         });
 
         it('error test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
+            qkc3.setProvider(provider);
             provider.injectError({
                     message: test.result,
                     code: -32603
@@ -62,8 +62,8 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
-            web3.eth[method](test.input, function(error, result){
+            // when
+            qkc3.eth[method](test.input, function(error, result){
 
                 // then
                 assert.isUndefined(result);
@@ -71,7 +71,7 @@ describe('async', function () {
 
                 done();
             });
-            
+
         });
     });
 });
